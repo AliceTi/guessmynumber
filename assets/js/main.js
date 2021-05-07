@@ -19,6 +19,12 @@ $(function(){
     $("#buttonGuess").click(
         function userGuess(){
             var userGuess =$("#userValue").val();
+            compteurClic++;
+            $("#compteur").text(compteurClic)
+                if ((compteurClic == 10) || (userGuess != number)){
+                    $("#msgMock").show(
+                        $("#mockMessage").text(compteurClic + " tentatives ? Ça commence à être vraiment long là... tu veux pas demander de l'aide à un adulte ?")
+                    );};
             if (userGuess == ""){
                 alert("Aller, ne sois pas timide, entre un nombre !");
             }
@@ -42,18 +48,10 @@ $(function(){
                 $("#buttonNumber").css('border' , '1px solid red') 
                 alert("Il s'agirait de générer un nombre avant de jouer !");
             }
+            
         }
     )
-    $(".compte-plus").on('click',function() {
-        compteurClic++;
-        $("#compteur").text(compteurClic)
-            if (compteurClic == 10){
-                $("#msgMock").show(
-                    $("#mockMessage").text(compteurClic + " tentatives ? Ça commence à être vraiment long là... tu veux pas demander de l'aide à un adulte ?")
-                );};
-        
 
-    });
 
     $(document).on('keyup keypress', 'form input[type="number"]', function(e) {
         if(e.which == 13) {
