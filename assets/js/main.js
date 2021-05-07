@@ -15,7 +15,7 @@ $(function(){
             $("#buttonNumber").css('border' , '1px solid black')
         }
     }
-    );               
+    );            
     $("#buttonGuess").click(
         function userGuess(){
             var userGuess =$("#userValue").val();
@@ -26,20 +26,21 @@ $(function(){
                 $("#msg div").hide();
                 if (userGuess == number){
                     $("#msgCorrect").show();
-                    $("#msgCount").show();};
-                if (userGuess < number){
+                    $("#msgCount").show();}
+                else{                
+                    if (userGuess < number){
                     $("#msgMore").show();};
-                if (userGuess > number){
-                    $("#msgLess").show();};
-                if ((userGuess > 100) || (userGuess < 0)){
-                    $("#msgStupid").show(
-                        $("#stupidNumber").text(userGuess));};
-            }
+                    if (userGuess > number){
+                        $("#msgLess").show();};
+                    if ((userGuess > 100) || (userGuess < 0)){
+                        $("#msgStupid").show(
+                            $("#stupidNumber").text(userGuess));};
+            }};
+
             if (number == -1){
                 $("#msg div").hide();
                 $("#buttonNumber").css('border' , '1px solid red') 
-                $("#msgDice").show(
-                    alert("Il s'agirait de générer un nombre avant de jouer !"));
+                alert("Il s'agirait de générer un nombre avant de jouer !");
             }
         }
     )
@@ -48,9 +49,16 @@ $(function(){
         $("#compteur").text(compteurClic)
             if (compteurClic == 10){
                 $("#msgMock").show(
-                    $("#mockMessage").text(compteurClic + ", ça commence à être vraiment long là, tu veux pas demander de l'aide à un adulte ?")
+                    $("#mockMessage").text(compteurClic + " tentatives ? Ça commence à être vraiment long là... tu veux pas demander de l'aide à un adulte ?")
                 );};
         
 
     });
+
+    $(document).on('keyup keypress', 'form input[type="number"]', function(e) {
+        if(e.which == 13) {
+          e.preventDefault();
+          return false;
+        }
+      }); 
 })
