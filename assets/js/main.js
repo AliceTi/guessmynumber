@@ -8,7 +8,7 @@ $(function(){
     $("#buttonNumber").click(
         function numberDef(){
             number = randomNumber(100) ;
-            alert('Le nombre a bien été généré, sauras-tu le deviner ?' + number);
+            alert('Le nombre a bien été généré, sauras-tu le deviner ?');
             compteurClic=0;
           
         if (number!=-1){
