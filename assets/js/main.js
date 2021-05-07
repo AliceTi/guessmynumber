@@ -16,7 +16,7 @@ $(function(){
         function userGuess(){
             var userGuess =$("#userValue").val();
             if (userGuess == ""){
-                alert("Aller, sois pas timide, entre un nombre !");
+                alert("Aller, ne sois pas timide, entre un nombre !");
             }
             else {
                 if (userGuess == number){
