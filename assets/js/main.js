@@ -1,6 +1,6 @@
 $(function(){
     $("#msg div").hide();
-    var number = 0;
+    var number = -1;
     var compteurClic = 0;
     function randomNumber(max){
         return Math.floor(Math.random()*max) ;
@@ -8,10 +8,14 @@ $(function(){
     $("#buttonNumber").click(
         function numberDef(){
             number = randomNumber(100) ;
-            alert('Le nombre a bien été généré, sauras-tu le deviner ?');
+            alert('Le nombre a bien été généré, sauras-tu le deviner ?' + number);
             compteurClic=0;
-        }  
-    );
+          
+        if (number!=-1){
+            $("#buttonNumber").css('border' , '1px solid black')
+        }
+    }
+    );               
     $("#buttonGuess").click(
         function userGuess(){
             var userGuess =$("#userValue").val();
@@ -19,26 +23,34 @@ $(function(){
                 alert("Aller, ne sois pas timide, entre un nombre !");
             }
             else {
+                $("#msg div").hide();
                 if (userGuess == number){
                     $("#msgCorrect").show();
-                    $("#msgCount").show();
-                    $("#msgMore").hide();
-                    $("#msgLess").hide();};
+                    $("#msgCount").show();};
                 if (userGuess < number){
-                    $("#msgCorrect").hide();
-                    $("#msgCount").hide();
-                    $("#msgMore").show();
-                    $("#msgLess").hide();};
+                    $("#msgMore").show();};
                 if (userGuess > number){
-                    $("#msgCorrect").hide();
-                    $("#msgCount").hide();
-                    $("#msgMore").hide();
                     $("#msgLess").show();};
+                if ((userGuess > 100) || (userGuess < 0)){
+                    $("#msgStupid").show(
+                        $("#stupidNumber").text(userGuess));};
+            }
+            if (number == -1){
+                $("#msg div").hide();
+                $("#buttonNumber").css('border' , '1px solid red') 
+                $("#msgDice").show(
+                    alert("Il s'agirait de générer un nombre avant de jouer !"));
             }
         }
     )
     $(".compte-plus").on('click',function() {
         compteurClic++;
-        $("#compteur").text(compteurClic);
+        $("#compteur").text(compteurClic)
+            if (compteurClic == 10){
+                $("#msgMock").show(
+                    $("#mockMessage").text(compteurClic + ", ça commence à être vraiment long là, tu veux pas demander de l'aide à un adulte ?")
+                );};
+        
+
     });
 })
